@@ -51,7 +51,10 @@ public class ListViewActivity extends Activity implements OnClickListener {
 		//Creiamo un nuovo ArrayAdapter, necessario per "sistemare" tutti gli elementi all'interno della Listview
 		listAdapter = new ArrayAdapter<String>(this, R.layout.row, listaAutori);
 
+		//Settiamo l'adapter
 		mainListView.setAdapter(listAdapter);
+		
+		//Aggiungiamo un OnItemClickListener agli elementi della ListView
 		mainListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -59,6 +62,7 @@ public class ListViewActivity extends Activity implements OnClickListener {
 					int posizione, long id) {
 				// TODO Auto-generated method stub
 
+				//Creiamo un alert
 				AlertDialog.Builder adb = new AlertDialog.Builder(
 						ListViewActivity.this);
 				adb.setTitle("Elimina elemento:");
@@ -67,6 +71,7 @@ public class ListViewActivity extends Activity implements OnClickListener {
 				adb.setNegativeButton("Annulla", null);
 				adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
+						//Rimuoviamo l'elemento alla posizione stabilita dalla lista
 						listAdapter.remove(listAdapter.getItem(posizioneDaRimuovere));
 					}
 				});
@@ -79,7 +84,9 @@ public class ListViewActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
+		//Salviamo in una stringa quanto contenuto nell'EditText
 		String nuovoAutore = nuovoNome.getText().toString();
+		//Aggiungiamo il nuovo nome alla lista
 		listAdapter.add(nuovoAutore);
 		nuovoNome.setText("");
 	}
